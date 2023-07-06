@@ -19,6 +19,15 @@ public class App {
 
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean usageHelpRequested;
+
+    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    private String format;
+
+    @Parameters(index = "0", description = "path to first file")
+    private File filepath1;
+
+    @Parameters(index = "1", description = "path to second file")
+    private File filepath2;
     public static void main(String... args) {
         App app = CommandLine.populateCommand(new App(), args);
         if (app.usageHelpRequested) {
