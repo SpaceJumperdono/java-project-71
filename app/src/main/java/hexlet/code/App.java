@@ -6,9 +6,13 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
@@ -28,11 +32,18 @@ public class App {
 
     @Parameters(index = "1", description = "path to second file")
     private File filepath2;
-    public static void main(String... args) {
+    public static void main(String... args) throws Exception {
         App app = CommandLine.populateCommand(new App(), args);
         if (app.usageHelpRequested) {
             CommandLine.usage(new App(), System.out);
             return;
+        }
+        String readFilePath = "txt";
+        Map<String, Object> map = Differ.getData(readFilePath);
+
+        // Выводим содержимое
+        for (Map.Entry<String, Object> i : map.entrySet()) {
+            System.out.println(i.getKey() + " " + i.getValue());
         }
     }
 
