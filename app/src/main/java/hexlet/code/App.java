@@ -28,23 +28,20 @@ public class App {
     private String format;
 
     @Parameters(index = "0", description = "path to first file")
-    private File filepath1;
+    private String filepath1;
 
     @Parameters(index = "1", description = "path to second file")
-    private File filepath2;
+    private String filepath2;
     public static void main(String... args) throws Exception {
         App app = CommandLine.populateCommand(new App(), args);
         if (app.usageHelpRequested) {
             CommandLine.usage(new App(), System.out);
             return;
         }
-        String readFilePath = "txt";
-        Map<String, Object> map = Differ.getData(readFilePath);
-
-        // Выводим содержимое
-        for (Map.Entry<String, Object> i : map.entrySet()) {
-            System.out.println(i.getKey() + " " + i.getValue());
-        }
+        //String readFilePath1 = "txt1";
+        //String readFilePath2 = "txt2";
+        String result = Differ.generate(filepath1, filepath2);
+        System.out.println(result);
     }
 
 }

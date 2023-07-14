@@ -6,11 +6,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Differ {
 
+    public static String generate(String file1, String file2) throws Exception {
+        StringBuilder result = new StringBuilder();
+        Map<String, Object> dataFile1 = getData(file1);
+        Map<String, Object> dataFile2 = getData(file2);
+        TreeSet<String> allKeys = new TreeSet<>();
+        allKeys.addAll(dataFile1.keySet());
+        allKeys.addAll(dataFile2.keySet());
+        result.append("{\n");
+        for(String i : allKeys) {
+            if (dataFile1.containsKey(i) && dataFile2.containsKey(i)) {
+                if (dataFile1.get(i).equals(dataFile2.get(i))) {
+                    result.append("    " + i + ": " + dataFile1.get(i).toString() + "\n");
+                } else {
+                    result.append("  - " + i +": " + dataFile1.get(i).toString() + "\n");
+                    result.append(("  + " + i +": " + dataFile2.get(i).toString()) + "\n");
+                }
+            } else if (dataFile1.containsKey(i) && !dataFile2.containsKey(i)) {
+                result.append("  - " + i + ": " + dataFile1.get(i).toString() + "\n");
+            } else {
+                result.append("  + " + i + ": " + dataFile2.get(i).toString() + "\n");
+            }
+        }
+        result.append("}\n");
+        return result.toString();
+    }
     public static Map getData(String content) throws Exception {
         Map<String, String> data = new HashMap<>();
         Path path = Paths.get(content).toAbsolutePath().normalize();
