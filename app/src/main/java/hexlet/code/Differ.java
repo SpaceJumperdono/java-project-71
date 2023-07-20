@@ -47,7 +47,7 @@ public class Differ {
                 result.append("  + " + i + ": " + dataFile2.get(i).toString() + "\n");
             }
         }
-        result.append("}\n");
+        result.append("}");
         return result.toString();
     }
 }
