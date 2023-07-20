@@ -43,3 +43,7 @@ jacocoTestReport {
 testlogger {
     showStandardStreams true
 }
+
+checkstyle {
+    toolVersion '10.12.1'
+}
