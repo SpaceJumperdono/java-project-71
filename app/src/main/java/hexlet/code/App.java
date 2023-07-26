@@ -31,17 +31,8 @@ public class App implements Callable<Integer> {
     }
     public static void main(String... args) throws Exception {
         CommandLine commandLine = new CommandLine(new App());
-        commandLine.parseArgs(args);
-        if (commandLine.isUsageHelpRequested()) {
-            commandLine.usage(System.out);
-            return;
-        } else if (commandLine.isVersionHelpRequested()) {
-            commandLine.printVersionHelp(System.out);
-            return;
-        }
+        commandLine.execute(args);
 
-        //String result = Differ.generate(app.filepath1, app.filepath2);
-        //System.out.println(result);
     }
 
 }
