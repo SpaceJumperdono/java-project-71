@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-public class App implements Callable<String> {
+public class App implements Callable<Integer> {
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     boolean versionInfoRequested;
 
@@ -25,13 +25,18 @@ public class App implements Callable<String> {
     private String filepath2;
 
     @Override
-    public String call() throws Exception {
-        return Differ.generate(filepath1, filepath2);
+    public Integer call() throws Exception {
+        System.out.println(Differ.generate(format, filepath1, filepath2));
+        return 0;
     }
     public static void main(String... args) throws Exception {
-        App app = CommandLine.populateCommand(new App(), args);
-        if (app.usageHelpRequested) {
-            CommandLine.usage(new App(), System.out);
+        CommandLine commandLine = new CommandLine(new App());
+        commandLine.parseArgs(args);
+        if (commandLine.isUsageHelpRequested()) {
+            commandLine.usage(System.out);
+            return;
+        } else if (commandLine.isVersionHelpRequested()) {
+            commandLine.printVersionHelp(System.out);
             return;
         }
 

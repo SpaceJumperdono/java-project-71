@@ -1,31 +1,19 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
 public class Differ {
 
-    public static String generate(String file1, String file2) throws Exception {
-        Map<String, Object> dataFile1 = getData(file1);
-        Map<String, Object> dataFile2 = getData(file2);
+    public static String generate(String type, String file1, String file2) throws Exception {
+        Parser parser = new Parser(type);
+        Map<String, Object> dataFile1 = parser.parsing(file1);
+        Map<String, Object> dataFile2 = parser.parsing(file2);
+
         String result = calculateDiff(dataFile1, dataFile2);
         return result;
     }
-    public static Map getData(String content) throws Exception {
-        Map<String, String> data = new HashMap<>();
-        Path path = Paths.get(content).toAbsolutePath().normalize();
-        byte[] readFile = Files.readAllBytes(path);
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map = objectMapper.readValue(readFile, new TypeReference<>() { });
-        return map;
-    }
+
 
     public static String calculateDiff(Map dataFile1, Map dataFile2) {
         StringBuilder result = new StringBuilder();
