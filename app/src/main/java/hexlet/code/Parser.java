@@ -10,21 +10,19 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 public class Parser {
-    private String type;
-    public Parser(String type) {
-        this.type = type;
-    }
 
-    public Map<String, Object> parsing(String filename) throws Exception {
+    public static Map<String, Object> parsing(String filename) throws Exception {
+        String[] splittedLine = filename.split("\\.");
+        String type = splittedLine[1];
         if (type.equals("json")) {
-            return getJsonData(filename);
+            return Parser.getJsonData(filename);
         } else if (type.equals("yml")) {
-            return getYmlData(filename);
+            return Parser.getYmlData(filename);
         } else {
             throw new RuntimeException(type + " is unknown type");
         }
     }
-    public Map getJsonData(String content) throws Exception {
+    public static Map getJsonData(String content) throws Exception {
         Path path = Paths.get(content).toAbsolutePath().normalize();
         byte[] readFile = Files.readAllBytes(path);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -32,7 +30,7 @@ public class Parser {
         return data;
     }
 
-    public Map getYmlData(String content) throws Exception {
+    public static Map getYmlData(String content) throws Exception {
         Path path = Paths.get(content).toAbsolutePath().normalize();
         byte[] readFile = Files.readAllBytes(path);
         ObjectMapper objectMapper = new YAMLMapper();
