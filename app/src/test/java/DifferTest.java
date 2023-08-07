@@ -16,4 +16,20 @@ public class DifferTest {
         assertThat(Differ.generate("stylish", "src/test/resources/file1.json",
                 "src/test/resources/file2.json")).isEqualTo(expected);
     }
+
+    @Test
+    void generateDiffTest2() throws Exception {
+        Path path = Paths.get("src/test/resources/expected2").toAbsolutePath().normalize();
+        String expected = Files.readString(path);
+        assertThat(Differ.generate("plain", "src/test/resources/file1.json",
+                "src/test/resources/file2.json")).isEqualTo(expected);
+    }
+
+    @Test
+    void generateDiffTest3() throws Exception {
+        Path path = Paths.get("src/test/resources/expected1").toAbsolutePath().normalize();
+        String expected = Files.readString(path);
+        assertThat(Differ.generate("stylish", "src/test/resources/file3.yml",
+                "src/test/resources/file4.yml")).isEqualTo(expected);
+    }
 }

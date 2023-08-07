@@ -1,7 +1,5 @@
 package hexlet.code;
 
-
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -13,60 +11,59 @@ public class Differ {
         Map<String, Object> dataFile1 = Parser.parsing(file1);
         Map<String, Object> dataFile2 = Parser.parsing(file2);
         switch (style) {
+            case "plain":
+                return Formatter.plain(calculateDiff(dataFile1, dataFile2));
             default:
-                return stylish(calculateDiff(dataFile1, dataFile2));
+                return Formatter.stylish(calculateDiff(dataFile1, dataFile2));
         }
     }
 
-
-    public static TreeMap<String, LinkedHashMap<Object, String>> calculateDiff(Map dataFile1, Map dataFile2) {
-        TreeMap<String, LinkedHashMap<Object, String>> result = new TreeMap<>();
+    public static TreeMap<String, Diff> calculateDiff(Map dataFile1, Map dataFile2) {
+        TreeMap<String, Diff> result = new TreeMap<>();
         TreeSet<String> allKeys = new TreeSet<>();
         allKeys.addAll(dataFile1.keySet());
         allKeys.addAll(dataFile2.keySet());
         for (String iterator : allKeys) {
-            LinkedHashMap<Object, String> diff = new LinkedHashMap<>();
+            Object valueFile1 = dataFile1.get(iterator);
+            Object valueFile2 = dataFile2.get(iterator);
             if (dataFile1.containsKey(iterator) && dataFile2.containsKey(iterator)) {
-                if (Objects.equals(dataFile1.get(iterator), dataFile2.get(iterator))) {
-                    diff.put(dataFile1.get(iterator), "unchanged");
-                    result.put(iterator, diff);
+                if (Objects.equals(valueFile1, valueFile2)) {
+                    result.put(iterator, new Diff("unchanged", valueFile1, valueFile2));
                 } else {
-                    diff.put(dataFile1.get(iterator), "changed");
-                    diff.put(dataFile2.get(iterator), "add");
-                    result.put(iterator, diff);
+                    result.put(iterator, new Diff("updated", valueFile1, valueFile2));
                 }
             } else {
                 if (dataFile1.containsKey(iterator) && !dataFile2.containsKey(iterator)) {
-                    diff.put(dataFile1.get(iterator), "delete");
-                    result.put(iterator, diff);
+                    result.put(iterator, new Diff("removed", valueFile1, valueFile2));
                 } else {
-                    diff.put(dataFile2.get(iterator), "add");
-                    result.put(iterator, diff);
+                    result.put(iterator, new Diff("added", valueFile1, valueFile2));
                 }
             }
         }
         return result;
     }
 
-    public static String stylish(TreeMap<String, LinkedHashMap<Object, String>> calculateDiff) {
-        StringBuilder result = new StringBuilder();
-        result.append("{\n");
-        for (String i: calculateDiff.keySet()) {
-            LinkedHashMap<Object, String> value = calculateDiff.get(i);
-            for (Object j : value.keySet()) {
-                if (value.get(j).equals("unchanged")) {
-                    result.append(" ".repeat(4) + i + ": " + j + "\n");
-                } else if (value.get(j).equals("changed")) {
-                    result.append(" ".repeat(2) + "- " + i + ": " + j + "\n");
-                } else if (value.get(j).equals("delete")) {
-                    result.append(" ".repeat(2) + "- " + i + ": " + j + "\n");
-                } else {
-                    result.append(" ".repeat(2) + "+ " + i + ": " + j + "\n");
-                }
-            }
-        }
-        result.append("}");
-        return result.toString();
-    }
 
+
+    public static class Diff {
+        private String status;
+        private Object valueFile1;
+        private Object valueFile2;
+
+        public Diff(String status, Object valueFile1, Object valueFile2) {
+            this.status = status;
+            this.valueFile1 = valueFile1;
+            this.valueFile2 = valueFile2;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+        public Object getValueFile1() {
+            return valueFile1;
+        }
+        public Object getValueFile2() {
+            return valueFile2;
+        }
+    }
 }
