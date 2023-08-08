@@ -7,15 +7,11 @@ import java.util.Objects;
 
 public class Differ {
 
-    public static String generate(String style, String file1, String file2) throws Exception {
+    public static String generate(String file1, String file2, String style) throws Exception {
         Map<String, Object> dataFile1 = Parser.parsing(file1);
         Map<String, Object> dataFile2 = Parser.parsing(file2);
-        switch (style) {
-            case "plain":
-                return Formatter.plain(calculateDiff(dataFile1, dataFile2));
-            default:
-                return Formatter.stylish(calculateDiff(dataFile1, dataFile2));
-        }
+        TreeMap<String, Diff> calculateDiff = calculateDiff(dataFile1, dataFile2);
+        return Formatter.choiceFormatter(calculateDiff, style);
     }
 
     public static TreeMap<String, Diff> calculateDiff(Map dataFile1, Map dataFile2) {
