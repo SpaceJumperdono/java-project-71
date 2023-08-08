@@ -34,7 +34,7 @@ public class Parser {
         Path path = Paths.get(content).toAbsolutePath().normalize();
         byte[] readFile = Files.readAllBytes(path);
         ObjectMapper objectMapper = new YAMLMapper();
-        Map<String, String> data = objectMapper.readValue(readFile, new TypeReference<>() { });
+        Map<String, Object> data = objectMapper.readValue(readFile, new TypeReference<>() { });
         return data;
     }
 }
