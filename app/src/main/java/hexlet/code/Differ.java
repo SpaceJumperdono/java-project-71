@@ -59,13 +59,13 @@ public class Differ {
             this.valueFile2 = valueFile2;
         }
 
-        public String getStatus() {
+        public final String getStatus() {
             return status;
         }
-        public Object getValueFile1() {
+        public final Object getValueFile1() {
             return valueFile1;
         }
-        public Object getValueFile2() {
+        public final Object getValueFile2() {
             return valueFile2;
         }
     }
