@@ -38,6 +38,6 @@ public class DifferTest {
         Path path = Paths.get("src/test/resources/expected3").toAbsolutePath().normalize();
         String expected = Files.readString(path);
         assertThat(Differ.generate("src/test/resources/file1.json",
-                "src/test/resources/file2.json","json")).isEqualTo(expected);
+                "src/test/resources/file2.json", "json")).isEqualTo(expected);
     }
 }
