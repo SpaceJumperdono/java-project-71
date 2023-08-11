@@ -14,6 +14,13 @@ public class Differ {
         return Formatter.choiceFormatter(calculateDiff, style);
     }
 
+    public static String generate(String file1, String file2) throws Exception {
+        Map<String, Object> dataFile1 = Parser.parsing(file1);
+        Map<String, Object> dataFile2 = Parser.parsing(file2);
+        TreeMap<String, Diff> calculateDiff = calculateDiff(dataFile1, dataFile2);
+        return Formatter.choiceFormatter(calculateDiff, "stylish");
+    }
+
     public static TreeMap<String, Diff> calculateDiff(Map dataFile1, Map dataFile2) {
         TreeMap<String, Diff> result = new TreeMap<>();
         TreeSet<String> allKeys = new TreeSet<>();

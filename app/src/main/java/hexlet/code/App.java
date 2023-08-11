@@ -15,7 +15,7 @@ public class App implements Callable<Integer> {
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     boolean usageHelpRequested;
 
-    @Option(names = {"-f", "--format"}, defaultValue = "json", description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
     private String format;
 
     @Parameters(index = "0", description = "path to first file")
