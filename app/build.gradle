@@ -1,5 +1,4 @@
 plugins {
-    id 'java'
     id 'checkstyle'
     id 'application'
     id 'jacoco'
@@ -15,10 +14,6 @@ repositories {
 
 application {
     mainClass = 'hexlet.code.App'
-}
-
-compileJava {
-    options.release = 17
 }
 
 dependencies {
