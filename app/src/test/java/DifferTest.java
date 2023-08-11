@@ -32,4 +32,12 @@ public class DifferTest {
         assertThat(Differ.generate("src/test/resources/file3.yml",
                 "src/test/resources/file4.yml", "stylish")).isEqualTo(expected);
     }
+
+    @Test
+    void generateDiffTest4() throws Exception {
+        Path path = Paths.get("src/test/resources/expected3").toAbsolutePath().normalize();
+        String expected = Files.readString(path);
+        assertThat(Differ.generate("src/test/resources/file1.json",
+                "src/test/resources/file2.json","json")).isEqualTo(expected);
+    }
 }
