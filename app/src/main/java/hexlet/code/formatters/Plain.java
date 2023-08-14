@@ -1,30 +1,34 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differ;
-
+import hexlet.code.DiffUtils;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.TreeMap;
 
 public class Plain {
-    public static String plain(TreeMap<String, Differ.Diff> calculatedDiff) {
+    public static String plain(Map<String, DiffUtils.Diff> calculatedDiff) {
         StringBuilder result = new StringBuilder();
-        for (Map.Entry<String, Differ.Diff> entry : calculatedDiff.entrySet()) {
-            if (entry.getValue().getStatus().equals("unchanged")) {
-                continue;
+        for (Map.Entry<String, DiffUtils.Diff> entry : calculatedDiff.entrySet()) {
+            String status = entry.getValue().getStatus();
+            String value1 = checkeValue(entry.getValue().getValue1());
+            String value2 = checkeValue(entry.getValue().getValue2());
+            switch (status) {
+                case "updated":
+                    result.append(String.format("Property '%s' was updated. From %s to %s\n",
+                            entry.getKey(), value1, value2));
+                    break;
+                case "added":
+                    result.append(String.format("Property '%s' was added with value: %s\n",
+                            entry.getKey(), value2));
+                    break;
+                case "removed":
+                    result.append(String.format("Property '%s' was removed\n",
+                            entry.getKey()));
+                    break;
+                default:
+                    break;
             }
-            result.append("Property " + "'" + entry.getKey() + "'" + " was ");
-            String value1 = checkeValue(entry.getValue().getValueFile1());
-            String value2 = checkeValue(entry.getValue().getValueFile2());
 
-            if (entry.getValue().getStatus().equals("updated")) {
-                result.append("updated. From " + value1 + " to " + value2 + "\n");
-            } else if (entry.getValue().getStatus().equals("added")) {
-                result.append("added with value: " + value2 + "\n");
-            } else if (entry.getValue().getStatus().equals("removed")) {
-                result.append("removed\n");
-            }
         }
         return result.toString().trim();
     }
