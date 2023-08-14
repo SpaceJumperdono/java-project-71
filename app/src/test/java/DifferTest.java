@@ -11,9 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class DifferTest {
-    public static String expected1;
-    public static String expected2;
-    public static String expected3;
+    private static String expected1;
+    private static String expected2;
+    private static String expected3;
     @BeforeAll
     public static void beforeAll() throws IOException {
         Path path1 = Paths.get("src/test/resources/expected1").toAbsolutePath().normalize();
