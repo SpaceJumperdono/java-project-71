@@ -11,3 +11,5 @@ bin
 .project*
 .classpath
 .idea/
+app/file1.json
+app/file2.json
