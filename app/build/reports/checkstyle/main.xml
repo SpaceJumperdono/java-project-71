@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="10.12.1">
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/DataSupplier.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/App.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/Parser.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/DiffBuilder.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/Formatter.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/formatters/Json.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/formatters/Stylish.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/formatters/Plain.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/Differ.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/ParserFactory.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/YmlParser.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/JsonParser.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/ParserTypes.java">
+</file>
+</checkstyle>
