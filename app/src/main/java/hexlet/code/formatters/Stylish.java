@@ -1,14 +1,14 @@
 package hexlet.code.formatters;
 
-import hexlet.code.DiffUtils;
+import hexlet.code.DiffBuilder;
 import java.util.Map;
 
 public class Stylish {
     public static final int SPACES = 4;
-    public static String stylish(Map<String, DiffUtils.Diff> calculateDiff) {
+    public static String stylish(Map<String, DiffBuilder.Diff> calculateDiff) {
         StringBuilder result = new StringBuilder();
         result.append("{\n");
-        for (Map.Entry<String, DiffUtils.Diff> entry : calculateDiff.entrySet()) {
+        for (Map.Entry<String, DiffBuilder.Diff> entry : calculateDiff.entrySet()) {
             String status = entry.getValue().getStatus();
             switch (status) {
                 case "added":
@@ -21,9 +21,11 @@ public class Stylish {
                 case "removed":
                     result.append(" ".repeat(2) + "- " + entry.getKey() + ": " + entry.getValue().getValue1() + "\n");
                     break;
-                default:
+                case "unchanged":
                     result.append(" ".repeat(SPACES) + entry.getKey() + ": " + entry.getValue().getValue1() + "\n");
                     break;
+                default:
+                    throw new RuntimeException("Unknown status");
             }
         }
         result.append("}");

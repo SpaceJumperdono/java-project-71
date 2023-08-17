@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Objects;
-public class DiffUtils {
+public class DiffBuilder {
     public static Map<String, Diff> calculateDiff(Map data1, Map data2) {
         Map<String, Diff> result = new TreeMap<>();
         Set<String> allKeys = new TreeSet<>();

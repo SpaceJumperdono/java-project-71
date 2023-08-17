@@ -1,14 +1,14 @@
 package hexlet.code.formatters;
 
-import hexlet.code.DiffUtils;
+import hexlet.code.DiffBuilder;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class Plain {
-    public static String plain(Map<String, DiffUtils.Diff> calculatedDiff) {
+    public static String plain(Map<String, DiffBuilder.Diff> calculatedDiff) {
         StringBuilder result = new StringBuilder();
-        for (Map.Entry<String, DiffUtils.Diff> entry : calculatedDiff.entrySet()) {
+        for (Map.Entry<String, DiffBuilder.Diff> entry : calculatedDiff.entrySet()) {
             String status = entry.getValue().getStatus();
             String value1 = checkeValue(entry.getValue().getValue1());
             String value2 = checkeValue(entry.getValue().getValue2());
@@ -25,8 +25,10 @@ public class Plain {
                     result.append(String.format("Property '%s' was removed\n",
                             entry.getKey()));
                     break;
-                default:
+                case "unchanged":
                     break;
+                default:
+                    throw new RuntimeException("Unknown status");
             }
 
         }
@@ -34,14 +36,12 @@ public class Plain {
     }
 
     public static String checkeValue(Object value) {
-        String result = null;
         if (value instanceof Map || value instanceof List || value instanceof Object[]) {
-            result = "[complex value]";
+            return "[complex value]";
         } else if (value instanceof String) {
-            result = "'" + value + "'";
+            return "'" + value + "'";
         } else {
-            result = Objects.toString(value);
+            return Objects.toString(value);
         }
-        return result;
     }
 }

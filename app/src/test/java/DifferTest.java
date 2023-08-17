@@ -28,32 +28,37 @@ public class DifferTest {
     }
     @Test
     void generateDiffTest1() throws Exception {
+        String diff = Differ.generate("src/test/resources/file1.json",
+                "src/test/resources/file2.json", "stylish");
 
-        assertThat(Differ.generate("src/test/resources/file1.json",
-                "src/test/resources/file2.json", "stylish")).isEqualTo(expected1);
+        assertThat(diff).isEqualTo(expected1);
     }
 
     @Test
     void generateDiffTest2() throws Exception {
-        assertThat(Differ.generate("src/test/resources/file1.json",
-                "src/test/resources/file2.json", "plain")).isEqualTo(expected2);
+        String diff = Differ.generate("src/test/resources/file1.json",
+                "src/test/resources/file2.json", "plain");
+        assertThat(diff).isEqualTo(expected2);
     }
 
     @Test
     void generateDiffTest3() throws Exception {
-        assertThat(Differ.generate("src/test/resources/file3.yml",
-                "src/test/resources/file4.yml", "stylish")).isEqualTo(expected1);
+        String diff = Differ.generate("src/test/resources/file3.yml",
+                "src/test/resources/file4.yml", "stylish");
+        assertThat(diff).isEqualTo(expected1);
     }
 
     @Test
     void generateDiffTest4() throws Exception {
-        assertThat(Differ.generate("src/test/resources/file1.json",
-                "src/test/resources/file2.json", "json")).isEqualTo(expected3);
+        String diff = Differ.generate("src/test/resources/file1.json",
+                "src/test/resources/file2.json", "json");
+        assertThat(diff).isEqualTo(expected3);
     }
 
     @Test
     void generateDiffWithTwoArguments() throws Exception {
-        assertThat(Differ.generate("src/test/resources/file1.json",
-                "src/test/resources/file2.json")).isEqualTo(expected1);
+        String diff = Differ.generate("src/test/resources/file1.json",
+                "src/test/resources/file2.json");
+        assertThat(diff).isEqualTo(expected1);
     }
 }

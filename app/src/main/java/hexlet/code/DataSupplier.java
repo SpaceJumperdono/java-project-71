@@ -12,14 +12,7 @@ public class DataSupplier {
         String type = splittedLine[1];
         Path path = Paths.get(content).toAbsolutePath().normalize();
         byte[] readsource = Files.readAllBytes(path);
-        ParserFactory factory = new ParserFactory();
-        if (type.equals("json")) {
-            return factory.getParser(ParserTypes.JSON).parse(readsource);
-        } else if (type.equals("yml")) {
-            return factory.getParser(ParserTypes.YML).parse(readsource);
-        } else {
-            throw new RuntimeException(type + " is unknown type");
-        }
+        return ParserFactory.getParser(type).parse(readsource);
     }
 
 }

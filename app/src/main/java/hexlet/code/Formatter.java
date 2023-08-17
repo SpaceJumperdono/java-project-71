@@ -9,15 +9,15 @@ import hexlet.code.formatters.Stylish;
 import java.util.Map;
 
 public class Formatter {
-    public static String chooseFormatter(Map<String, DiffUtils.Diff> calculateDiff, String style)
+    public static String chooseFormatter(Map<String, DiffBuilder.Diff> diff, String style)
             throws JsonProcessingException {
         switch (style) {
             case "plain":
-                return Plain.plain(calculateDiff);
+                return Plain.plain(diff);
             case "json":
-                return Json.json(calculateDiff);
+                return Json.json(diff);
             case "stylish":
-                return Stylish.stylish(calculateDiff);
+                return Stylish.stylish(diff);
             default:
                 throw new RuntimeException();
         }

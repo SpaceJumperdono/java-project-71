@@ -1,12 +1,14 @@
 package hexlet.code;
 
 public class ParserFactory {
-    public final Parser getParser(ParserTypes type) {
+    public static final Parser getParser(String type) {
         switch (type) {
-            case JSON:
+            case "json":
                 return new JsonParser();
-            default:
+            case "yml":
                 return new YmlParser();
+            default:
+                throw new RuntimeException(type + " is unknown type");
 
         }
     }
