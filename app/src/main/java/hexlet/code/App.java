@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
-    public static final int ERROR_COD = 1;
+    public static final int ERROR_CODE = 1;
     public static final int SUCCESS_CODE = 0;
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     private boolean versionInfoRequested;
@@ -32,7 +32,7 @@ public class App implements Callable<Integer> {
             System.out.println(Differ.generate(filepath1, filepath2, format));
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return ERROR_COD;
+            return ERROR_CODE;
         }
         return SUCCESS_CODE;
     }

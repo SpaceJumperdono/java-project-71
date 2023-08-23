@@ -1,6 +1,8 @@
 package hexlet.code;
 
 
+import hexlet.code.formatters.Formatter;
+
 import java.util.Map;
 
 public class Differ {

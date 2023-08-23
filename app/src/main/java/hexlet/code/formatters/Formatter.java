@@ -1,11 +1,7 @@
-package hexlet.code;
-
+package hexlet.code.formatters;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import hexlet.code.formatters.Json;
-import hexlet.code.formatters.Plain;
-import hexlet.code.formatters.Stylish;
-
+import hexlet.code.DiffBuilder;
 import java.util.Map;
 
 public class Formatter {

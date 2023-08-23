@@ -4,11 +4,9 @@
 </file>
 <file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/App.java">
 </file>
-<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/Parser.java">
-</file>
 <file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/DiffBuilder.java">
 </file>
-<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/Formatter.java">
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/formatters/Formatter.java">
 </file>
 <file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/formatters/Json.java">
 </file>
@@ -16,14 +14,14 @@
 </file>
 <file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/formatters/Plain.java">
 </file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/parsers/Parser.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/parsers/ParserFactory.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/parsers/YmlParser.java">
+</file>
+<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/parsers/JsonParser.java">
+</file>
 <file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/Differ.java">
-</file>
-<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/ParserFactory.java">
-</file>
-<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/YmlParser.java">
-</file>
-<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/JsonParser.java">
-</file>
-<file name="/home/pavel/java-project-71/app/src/main/java/hexlet/code/ParserTypes.java">
 </file>
 </checkstyle>
